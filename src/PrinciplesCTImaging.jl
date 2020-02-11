@@ -1,5 +1,5 @@
 module PrinciplesCTImaging
 
-greet() = print("Hello World!")
+include("lineintegralsandprojections.jl")
 
 end # module
