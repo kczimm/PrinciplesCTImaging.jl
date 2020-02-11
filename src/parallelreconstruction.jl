@@ -13,7 +13,7 @@ function h(N::Integer, τ::AbstractFloat)
     h
 end
 
-function parallelFilter!(Q, P, τ)
+function parallelFilter!(Q::AbstractMatrix, P::AbstractMatrix, τ::AbstractFloat)
     @assert size(Q) == size(P)
     samples, views = size(P)
     N = nextpow(2, 2 * samples - 1)
@@ -28,7 +28,7 @@ function parallelFilter!(Q, P, τ)
     end
 end
 
-function parallelReconstruction(P, θ, t)
+function parallelReconstruction(P::AbstractMatrix, θ::AbstractVector, t::AbstractVector)
     Q = similar(P)
     τ = step(t)
     parallelFilter!(Q, P, τ)
