@@ -26,9 +26,9 @@ function projection(e::Ellipse, θᵢ, tᵢ)
 end
 
 function projection(
-    ellipses::AbstractArray{<:Ellipse},
-    θ::AbstractRange,
-    t::AbstractRange,
+    ellipses::AbstractVector{<:Ellipse},
+    θ::AbstractVector,
+    t::AbstractVector,
 )
     [sum(projection(e, θᵢ, tᵢ) for e in ellipses) for tᵢ in t, θᵢ in θ]
 end
@@ -47,7 +47,7 @@ SheppLoganPhantom = [
     Ellipse(0.06, -0.605, 0.046, 0.023, 90.0, 0.01),
 ]
 
-function construct(ellipses::AbstractArray{<:Ellipse}, N::Integer)
+function construct(ellipses::AbstractVector{<:Ellipse}, N::Integer)
     f = zeros(N, N)
     for (i, xᵢ) in enumerate(range(-1, 1, length = N)),
         (j, yⱼ) in enumerate(range(-1, 1, length = N))
